@@ -1,0 +1,4 @@
+aws:
+  build:
+    image: codeship/aws-dockercfg-generator
+    dockerfile_path: ./Dockerfile
