@@ -11,8 +11,7 @@ ENV PATH /root/.local/lib/aws/bin/:$PATH
 
 RUN mkdir -p ~/.aws
 
-ADD ecr-cli.zip .
-RUN unzip ecr-cli.zip && awscli-bundle/install 
+RUN pip install awscli
 
 ADD aws_docker_creds.sh . 
 
