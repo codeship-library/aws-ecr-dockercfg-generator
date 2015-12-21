@@ -1,4 +1,4 @@
 aws:
   build:
-    image: codeship/aws-dockercfg-generator
+    image: codeship/aws-ecr-dockercfg-generator
     dockerfile_path: ./Dockerfile

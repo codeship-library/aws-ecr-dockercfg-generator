@@ -1,5 +1,5 @@
 - service: aws
   tag: master
   type: push
-  image_name: codeship/aws-dockercfg-generator
+  image_name: codeship/aws-ecr-dockercfg-generator
   encrypted_dockercfg_path: dockercfg.encrypted
