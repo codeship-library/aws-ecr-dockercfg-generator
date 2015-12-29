@@ -39,7 +39,7 @@ app:
     image: 874084658176.dkr.ecr.us-east-1.amazonaws.com/myorg/myapp
     dockerfile_path: ./Dockerfile
 aws_dockercfg:
-  image: codeship-library/aws-ecr-dockercfg-generator
+  image: codeship/aws-ecr-dockercfg-generator
   add_docker: true
   encrypted_env: aws.env.encrypted
 ```
