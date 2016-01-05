@@ -41,7 +41,7 @@ app:
 aws_dockercfg:
   image: codeship/aws-ecr-dockercfg-generator
   add_docker: true
-  encrypted_env: aws.env.encrypted
+  encrypted_env_file: aws.env.encrypted
 ```
 
 ```
