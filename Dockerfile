@@ -1,18 +1,13 @@
-FROM debian:jessie
+FROM gliderlabs/alpine:3.3
 
-# install deps
-RUN apt-get update && apt-get install -y apt-transport-https python python-pip unzip
+RUN apk --no-cache add bash docker
 
-# install docker
-RUN echo 'deb https://apt.dockerproject.org/repo debian-jessie main' > /etc/apt/sources.list.d/docker.list
-RUN apt-get update && apt-get install -y --force-yes docker-engine
+# purposely split this up so layers can download in parallel
+RUN apk --no-cache add python py-pip \
+    && mkdir ~/.aws \
+    && pip install --upgrade pip \
+    && pip install awscli
 
-ENV PATH /root/.local/lib/aws/bin/:$PATH
+ADD aws_docker_creds.sh /
 
-RUN mkdir -p ~/.aws
-
-RUN pip install awscli
-
-ADD aws_docker_creds.sh . 
-
-ENTRYPOINT ["./aws_docker_creds.sh"]
+ENTRYPOINT ["/aws_docker_creds.sh"]

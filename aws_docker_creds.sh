@@ -1,5 +1,13 @@
 #!/bin/bash
 
+set -e
+
+echo 'AWS ECR dockercfg generator'
+
+: "${AWS_REGION:?Need to set AWS_REGION}"
+: "${AWS_ACCESS_KEY_ID:?Need to set AWS_ACCESS_KEY_ID}"
+: "${AWS_SECRET_ACCESS_KEY:?Need to set AWS_SECRET_ACCESS_KEY}"
+
 cat << EOF > ~/.aws/config
 [default]
 region = $AWS_REGION
