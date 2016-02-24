@@ -1,13 +1,13 @@
 # Dockercfg Generation Service for AWS ECR
 
 This container allows you to generate a temporary dockercfg using your AWS credentials
-and writes it to a specified filename. Typical usage of this image would be to run it 
+and writes it to a specified filename. Typical usage of this image would be to run it
 with a volume attached, and write the dockercfg to that volume.
 
 In order to export a dockercfg, the container needs access to a docker instance, so
 you must mount a docker socket, or provide access to a docker host in some way.
- 
-```
+
+```bash
 $ cat aws_creds.env
 AWS_ACCESS_KEY_ID=XXXXXXXXXXXXXXXXXXX
 AWS_SECRET_ACCESS_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -32,7 +32,7 @@ Codeship supports using custom images to generate dockercfg files during the bui
 
 Here is an example of using and ECR Dockercfg generator to authenticate pushing an image.
 
-```
+```yaml
 # codeship-services.yml
 app:
   build:
@@ -44,14 +44,19 @@ aws_dockercfg:
   encrypted_env_file: aws.env.encrypted
 ```
 
-```
+```yaml
+# codeship-steps.yml
 - service: app
   type: push
   tag: master
   image_name: 874084658176.dkr.ecr.us-east-1.amazonaws.com/myorg/myapp
-  registry: https://874084658176.dkr.ecr.us-east-1.amazonaws.com/
+  registry: https://874084658176.dkr.ecr.us-east-1.amazonaws.com
   dockercfg_service: aws_dockercfg
 ```
 
 You can also use this authentication to pull images, or use with caching, by defining the `dockercfg_service` field on groups of steps, or each individual step that pulls or pushes an image, or by adding the field to specific services.
 
+## Troubleshooting
+
+#### "No basic auth credentials" error on push
+Make sure the registry entry in your steps does not contain a trailing slash.
