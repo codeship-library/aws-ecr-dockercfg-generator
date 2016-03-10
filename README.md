@@ -30,6 +30,11 @@ Codeship supports using custom images to generate dockercfg files during the bui
 * AWS_ACCESS_KEY_ID - Your AWS Access Key
 * AWS_SECRET_ACCESS_KEY - Your AWS Access Secret
 
+Optionally, you can also set the following variables to assume a role across accounts before generating the dockercfg:
+
+* AWS_STS_ROLE - The AWS role to assume
+* AWS_STS_ACCOUNT - The AWS account the role exists in
+
 Here is an example of using and ECR Dockercfg generator to authenticate pushing an image.
 
 ```yaml
