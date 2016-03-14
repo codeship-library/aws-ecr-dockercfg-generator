@@ -38,5 +38,6 @@ $(aws ecr get-login)
 
 # writing aws docker creds to desired path
 echo "Writing Docker creds to $1"
+chmod 544 ~/.docker/config.json
 cp ~/.docker/config.json $1
 
