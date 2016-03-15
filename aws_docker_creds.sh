@@ -22,7 +22,7 @@ if [[ -n $AWS_STS_ROLE || -n $AWS_STS_ACCOUNT ]]; then
   role="arn:aws:iam::${AWS_STS_ACCOUNT}:role/${AWS_STS_ROLE}"
   echo "Using STS to get credentials for ${role}"
 
-  aws_tmp=$(mktemp -t aws-XXXX.json)
+  aws_tmp=$(mktemp -t aws-json-XXXXXX)
 
   aws sts assume-role --role-arn "${role}" --role-session-name aws_docker_creds > "${aws_tmp}"
 
