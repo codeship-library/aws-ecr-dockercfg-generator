@@ -1,13 +1,24 @@
-FROM gliderlabs/alpine:3.3
+FROM gliderlabs/alpine:3.4
+MAINTAINER maintainers@codeship.com
 
-RUN apk --no-cache add bash docker jq
+ENV \
+  AWS_CLI_VERSION="1.10.62" \
+  PIP_DISABLE_PIP_VERSION_CHECK=true
 
 # purposely split this up so layers can download in parallel
-RUN apk --no-cache add python py-pip \
-    && mkdir ~/.aws \
-    && pip install --upgrade pip \
-    && pip install awscli
+RUN \
+  apk --no-cache add \
+    bash \
+    docker \
+    jq
 
-ADD aws_docker_creds.sh /
+RUN \
+  apk --no-cache add \
+    py-pip \
+    python && \
+  pip install awscli==${AWS_CLI_VERSION} && \
+  mkdir -p "${HOME}/.aws"
+
+COPY aws_docker_creds.sh /
 
 ENTRYPOINT ["/aws_docker_creds.sh"]
