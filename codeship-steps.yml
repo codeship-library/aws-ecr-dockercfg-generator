@@ -1,4 +1,6 @@
 - service: aws
+  command: bash -c 'set -e; aws_docker_creds.sh /tmp; cat /tmp/config.json'
+- service: aws
   tag: master
   type: push
   image_name: codeship/aws-ecr-dockercfg-generator

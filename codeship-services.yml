@@ -2,3 +2,4 @@ aws:
   build:
     image: codeship/aws-ecr-dockercfg-generator
     dockerfile_path: ./Dockerfile
+  encrypted_env_file: aws.env.encrypted
