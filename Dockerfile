@@ -2,7 +2,7 @@ FROM alpine:3.4
 MAINTAINER maintainers@codeship.com
 
 ENV \
-  AWS_CLI_VERSION="1.10.63" \
+  AWS_CLI_VERSION="1.10.64" \
   PIP_DISABLE_PIP_VERSION_CHECK=true
 
 # purposely split this up so layers can download in parallel
